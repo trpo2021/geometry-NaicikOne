@@ -1,92 +1,161 @@
 #include <ctype.h>
+#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-bool search_brecket(char *cursor);  //поиск '('
-bool search_comma(char *cursor);    //поиск ','
-bool search_brecket2(char *cursor); //поиск ')'
-bool check_eof(char *cursor); //проверка до конца строки
+bool search_brecket(char *MARK);
+bool search_comma(char *MARK);
+bool search_brecket2(char *MARK);
+bool word_chek(char *WR, char *MARK);
+void translate(char *MARK, double *D);
+int chek(char *MARK, int max, char *WR);
+void calculation(double *);
 
 int main() {
+  int max = 30;
   int res = 1;
-  char str[30];
-  char *cursor = str;
-  char *cursor2 = str;
-  double data[3];
-  double x, y, radius;
+  char str[max];
+  char *MARK = str;
+  char *MARK2 = str;
+  double D[5];
+  char WR[] = {"circle"};
 
-  fgets(str, sizeof(str), stdin);
+  fgets(str, max, stdin);
 
-  if (search_brecket(cursor) == 0) { //поиск '('
-    res = 1;
-  } else {
-    res = 0;
-  }
-  if (search_brecket2(cursor) == 0) { //поиск ')'
-    res = 1;
-  } else {
-    res = 0;
-  }
-  if (search_comma(cursor) == 0) { //поиск ','
-    res = 1;
-  } else {
-    res = 0;
-  }
+  if (isalpha(*MARK) != 0) {
+    while (isalpha(*MARK2) != 0)
+      MARK2++;
+  } //передвижение указателя на первую скобку
 
-  if (res == 0) {
+  if (chek(MARK, max, WR) == 0) {
+    MARK = MARK2;
     printf("Correct\n");
   } else {
     printf("Uncorrect\n");
-  }
-  system("pause");
+  } // вывод сообщения о корректности запроса
+
+  translate(MARK, D);
+  calculation(D);
+
+  return true;
 }
-bool search_brecket(char *cursor) {
+
+void translate(char *MARK, double *X) {
+  char *flag;
+  double a;
+  int i = 0;
+  while (isdigit(*MARK) == 0) {
+    MARK++;
+    if (isdigit(*MARK) != 0) {
+      a = strtod(MARK, &flag);
+      X[i] = a;
+      i++;
+      MARK = flag;
+      if (i == 3)
+        break;
+    } else {
+      printf("expected '<double>'\n");
+      system("pause");
+      break;
+    }
+  }
+} //преобразование чисел в строке в численный формат данных
+
+void calculation(double *D) {
+  float pi = 3.1415;
+  float S;
+  float P;
+  P = 2 * pi * D[2];
+  S = pi * pow(D[2], 2);
+  printf("Perimetr = %f\n", P);
+  printf("Area = %f\n", S);
+  system("pause");
+} // нахождение периметра и площади
+
+int chek(char *MARK, int max, char *WR) {
+  int res;
+  if (search_brecket(MARK) == 0) { //поиск '('
+    res = 1;
+  } else {
+    res = 0;
+  }
+  if (search_brecket2(MARK) == 0) { //поиск ')'
+    res = 1;
+  } else {
+    res = 0;
+  }
+  if (search_comma(MARK) == 0) { //поиск ','
+    res = 1;
+  } else {
+    res = 0;
+  }
+
+  if (word_chek(MARK, WR) == 0) {
+    res = 1;
+  } else {
+    res = 0;
+  }
+  return res;
+} //массовая проверка верности запроса
+
+bool search_brecket(char *MARK) {
   int flag = 0;
 
-  while (*cursor != 10) {
-    if (*cursor == '(') {
+  while (*MARK != 10) {
+    if (*MARK == '(') {
       flag = 1;
       break;
     }
-    cursor++;
+    MARK++;
   }
   if (flag == 0) {
     printf("expected '('\n");
     return false;
   }
   return true;
-}
-bool search_brecket2(char *cursor) {
+} //проверка на наличие "("
+
+bool search_brecket2(char *MARK) {
   int flag = 0;
 
-  while (*cursor != 10) {
-    if (*cursor == ')') {
+  while (*MARK != 10) {
+    if (*MARK == ')') {
       flag = 1;
       break;
     }
-    cursor++;
+    MARK++;
   }
   if (flag == 0) {
     printf("expected ')'\n");
     return false;
   }
   return true;
-}
-bool search_comma(char *cursor) {
+} //проверка на наличие ")"
+
+bool search_comma(char *MARK) {
   int flag = 0;
 
-  while (*cursor != 10) {
-    if (*cursor == ',') {
+  while (*MARK != 10) {
+    if (*MARK == ',') {
       flag = 1;
       break;
     }
-    cursor++;
+    MARK++;
   }
   if (flag == 0) {
     printf("expected ','\n");
     return false;
   }
   return true;
-}
+} //проверка на наличие ","
+
+bool word_chek(char *WR, char *MARK) {
+  int s = 6;
+  if (strncmp(WR, MARK, s) == 0) {
+    return true;
+  }
+  printf("check the spelling of the word\n");
+  return false;
+} //проверка на написание слова "circle"
