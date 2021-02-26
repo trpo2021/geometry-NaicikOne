@@ -15,7 +15,6 @@ void calculation(double *);
 
 int main() {
   int max = 30;
-  int res = 1;
   char str[max];
   char *MARK = str;
   char *MARK2 = str;
