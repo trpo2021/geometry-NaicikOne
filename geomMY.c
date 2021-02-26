@@ -10,7 +10,7 @@ bool search_brecket2(char *cursor); //поиск ')'
 bool check_eof(char *cursor); //проверка до конца строки
 
 int main() {
-  int res;
+  int res = 1;
   char str[30];
   char *cursor = str;
   char *cursor2 = str;
@@ -20,13 +20,25 @@ int main() {
   fgets(str, sizeof(str), stdin);
 
   if (search_brecket(cursor) == 0) { //поиск '('
+    res = 1;
+  } else {
     res = 0;
   }
   if (search_brecket2(cursor) == 0) { //поиск ')'
+    res = 1;
+  } else {
     res = 0;
   }
+  if (search_comma(cursor) == 0) { //поиск ','
+    res = 1;
+  } else {
+    res = 0;
+  }
+
   if (res == 0) {
     printf("Correct\n");
+  } else {
+    printf("Uncorrect\n");
   }
   system("pause");
 }
@@ -58,6 +70,22 @@ bool search_brecket2(char *cursor) {
   }
   if (flag == 0) {
     printf("expected ')'\n");
+    return false;
+  }
+  return true;
+}
+bool search_comma(char *cursor) {
+  int flag = 0;
+
+  while (*cursor != 10) {
+    if (*cursor == ',') {
+      flag = 1;
+      break;
+    }
+    cursor++;
+  }
+  if (flag == 0) {
+    printf("expected ','\n");
     return false;
   }
   return true;
