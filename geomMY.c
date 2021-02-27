@@ -33,6 +33,8 @@ int main() {
     printf("Correct\n");
   } else {
     printf("Uncorrect\n");
+    system("pause");
+    return 0;
   } // вывод сообщения о корректности запроса
 
   translate(MARK, D);
@@ -74,27 +76,18 @@ void calculation(double *D) {
 } // нахождение периметра и площади
 
 int chek(char *MARK, int max, char *WR) {
-  int res;
+  int res = 0;
   if (search_brecket(MARK) == 0) { //поиск '('
-    res = 1;
-  } else {
-    res = 0;
+    res++;
   }
   if (search_brecket2(MARK) == 0) { //поиск ')'
-    res = 1;
-  } else {
-    res = 0;
+    res++;
   }
   if (search_comma(MARK) == 0) { //поиск ','
-    res = 1;
-  } else {
-    res = 0;
+    res++;
   }
-
   if (word_chek(MARK, WR) == 0) {
-    res = 1;
-  } else {
-    res = 0;
+    res++;
   }
   return res;
 } //массовая проверка верности запроса
