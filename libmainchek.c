@@ -1,17 +1,20 @@
 #include "libmainchek.h"
 
-bool search_brecket(char* MARK);
-bool search_comma(char* MARK);
-bool search_brecket2(char* MARK);
-bool word_chek(char* WR, char* MARK);
-int chek(char* MARK, int max, char* WR, char* MARK2);
-int mainchek(char* MARK, int max, char* WR, char* MARK2);
+bool search_brecket(char*);
+bool search_comma(char*);
+bool search_brecket2(char*);
+bool word_chek(char*, char*);
+int chek(char*, char*);
+int mainchek(char*, char*, char*);
 
-int mainchek(char* MARK, int max, char* WR, char* MARK2)
+int mainchek(char* MARK, char* WR, char* MARK2)
 {
-    int res;
-    res = chek(MARK, max, WR, MARK2);
-    if (res == 0) {
+    if (isalpha(*MARK) != 0) {
+        while (isalpha(*MARK2) != 0)
+            MARK2++;
+    } //передвижение указателя на первую скобку
+
+    if (chek(MARK, WR) == 0) {
         MARK = MARK2;
         printf("Correct\n");
     } else {
@@ -20,13 +23,8 @@ int mainchek(char* MARK, int max, char* WR, char* MARK2)
     } // вывод сообщения о корректности запроса
 }
 
-int chek(char* MARK, int max, char* WR, char* MARK2)
+int chek(char* MARK, char* WR)
 {
-    if (isalpha(*MARK) != 0) {
-        while (isalpha(*MARK2) != 0)
-            *MARK2++;
-    } //передвижение указателя на первую скобку
-
     int res = 0;
     if (search_brecket(MARK) == 0) { //поиск '('
         res++;
