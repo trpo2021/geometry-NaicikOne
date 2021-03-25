@@ -8,4 +8,4 @@
 #pragma once
 
 void calculation(double*);
-int translate(char* MARK, double* D);
+int translate(char*, double*);

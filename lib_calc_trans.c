@@ -1,7 +1,30 @@
 #include "lib_calc_trans.h"
 
 void calculation(double*);
-int translate(char* MARK, double* D);
+int translate(char*, double*);
+
+int translate(char* MARK, double* D)
+{
+    char* flag;
+    double A;
+    int i = 0;
+    while (isdigit(*MARK) == 0) {
+        MARK++;
+        if (isdigit(*MARK) != 0) {
+            A = strtod(MARK, &flag);
+            D[i] = A;
+            i++;
+            MARK = flag;
+            if (i == 3) {
+                break;
+            } else {
+                printf("expected '<double>'\n");
+                system("pause");
+                return 0;
+            }
+        }
+    }
+} //преобразование чисел в строке в численный формат данных
 
 void calculation(double* D)
 {
@@ -14,22 +37,3 @@ void calculation(double* D)
     printf("Area = %f\n", S);
     system("pause");
 } // нахождение периметра и площади
-
-int translate(char* MARK, double* D)
-{
-    char* flag;
-    double a;
-    int i = 0;
-    while (isdigit(*MARK) == 0) {
-        MARK++;
-        if (isdigit(*MARK) != 0) {
-            a = strtod(MARK, &flag);
-            D[i] = a;
-            i++;
-            MARK = flag;
-            if (i != 3) {
-                return 0;
-            }
-        }
-    }
-} //преобразование чисел в строке в численный формат данных
