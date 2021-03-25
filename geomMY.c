@@ -11,7 +11,7 @@ bool search_brecket2(char*);
 bool word_chek(char*, char*);
 int chek(char*, char*);
 void calculation(double*);
-void translate(char*, double*);
+int translate(char*, double*);
 
 int main()
 {
@@ -44,7 +44,7 @@ int main()
     return true;
 }
 
-void translate(char* MARK, double* X)
+int translate(char* MARK, double* D)
 {
     char* flag;
     double a;
@@ -53,7 +53,7 @@ void translate(char* MARK, double* X)
         MARK++;
         if (isdigit(*MARK) != 0) {
             a = strtod(MARK, &flag);
-            X[i] = a;
+            D[i] = a;
             i++;
             MARK = flag;
             if (i == 3)
@@ -61,7 +61,7 @@ void translate(char* MARK, double* X)
         } else {
             printf("expected '<double>'\n");
             system("pause");
-            break;
+            return 0;
         }
     }
 } //преобразование чисел в строке в численный формат данных
