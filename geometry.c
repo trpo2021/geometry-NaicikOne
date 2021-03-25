@@ -10,16 +10,15 @@
 
 int main()
 {
-    int max = 30;
-    char str[max];
-    char* MARK = str;
-    char* MARK2 = str;
+    char ST[30];
+    char* MARK = ST;
+    char* MARK2 = ST;
     double D[5];
     char WR[] = {"circle"};
 
-    fgets(str, max, stdin);
+    fgets(ST, 30, stdin);
 
-    mainchek(MARK, max, WR, MARK2);
+    mainchek(MARK, WR, MARK2);
     translate(MARK, D);
     calculation(D);
 
