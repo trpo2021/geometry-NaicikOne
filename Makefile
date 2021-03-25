@@ -1,5 +1,5 @@
 geometry: geometry.o lib_calc_trans.o libmainchek.o
-	gcc geometry.o lib_calc_trans.o libmainchek.o  -o geometry
+	gcc geometry.o lib_calc_trans.o libmainchek.o -lm -o  geometry
 
 geometry.o: geometry.c
 	gcc -c geometry.c
