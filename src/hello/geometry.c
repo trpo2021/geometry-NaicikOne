@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lib_calc_trans.h"
-#include "libmainchek.h"
+#include "libhello/lib_calc_trans.h"
+#include "libhello/libmainchek.h"
 
 int main()
 {
