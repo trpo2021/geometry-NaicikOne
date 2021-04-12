@@ -9,6 +9,7 @@ int mainchek(char*, char*, char*);
 
 int mainchek(char* MARK, char* WR, char* MARK2)
 {
+    int ans = 1;
     if (isalpha(*MARK) != 0) {
         while (isalpha(*MARK2) != 0)
             MARK2++;
@@ -17,24 +18,26 @@ int mainchek(char* MARK, char* WR, char* MARK2)
     if (chek(MARK, WR) == 0) {
         MARK = MARK2;
         printf("Correct\n");
+        return ans;
     } else {
         printf("Uncorrect\n");
-        return 0;
+        ans = 0;
+        return ans;
     } // вывод сообщения о корректности запроса
 }
 
 int chek(char* MARK, char* WR)
 {
     int res = 0;
-    if (search_brecket(MARK) == 0) { //поиск '('
+    if (search_brecket(MARK) == 0) {
         res++;
-    }
-    if (search_brecket2(MARK) == 0) { //поиск ')'
+    } //поиск '('
+    if (search_brecket2(MARK) == 0) {
         res++;
-    }
-    if (search_comma(MARK) == 0) { //поиск ','
+    } //поиск ')'
+    if (search_comma(MARK) == 0) {
         res++;
-    }
+    } //поиск ','
     if (word_chek(MARK, WR) == 0) {
         res++;
     }

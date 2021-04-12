@@ -18,9 +18,11 @@ int main()
 
     fgets(ST, 30, stdin);
 
-    mainchek(MARK, WR, MARK2);
+    if (mainchek(MARK, WR, MARK2) == 0) {
+        system("pause");
+        return 0;
+    }
     translate(MARK, D);
     calculation(D);
-
     return 0;
 }
