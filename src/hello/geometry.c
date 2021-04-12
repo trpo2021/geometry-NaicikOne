@@ -13,7 +13,7 @@ int main()
     char ST[30];
     char* MARK = ST;
     char* MARK2 = ST;
-    double D[5];
+    int D[3];
     char WR[] = {"circle"};
 
     fgets(ST, 30, stdin);

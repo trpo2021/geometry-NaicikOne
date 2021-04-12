@@ -1,32 +1,25 @@
 #include "lib_calc_trans.h"
 
-void calculation(double*);
-int translate(char*, double*);
+void calculation(int*);
+int translate(char*, int*);
 
-int translate(char* MARK, double* D)
+int translate(char* MARK, int* D)
 {
-    char* flag;
-    double A;
-    int i = 0;
-    while (isdigit(*MARK) == 0) {
+    while (isalpha(*MARK) != 0) {
         MARK++;
-        if (isdigit(*MARK) != 0) {
-            A = strtod(MARK, &flag);
-            D[i] = A;
-            i++;
-            MARK = flag;
-            if (i == 3) {
-                break;
-            } else {
-                printf("expected '<double>'\n");
-                system("pause");
-                return 0;
-            }
-        }
     }
+    MARK++;
+    char num[1];
+    int i = 0;
+    while (i != 3) {
+        *num = *(MARK + i);
+        D[i] = atoi(num);
+        i++;
+    }
+    return 0;
 } //преобразование чисел в строке в численный формат данных
 
-void calculation(double* D)
+void calculation(int* D)
 {
     float pi = 3.1415;
     float S;
