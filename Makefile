@@ -1,3 +1,4 @@
+NAME_PROJ = geometry_easy
 C=gcc
 FLAGS1=-lm -o
 FLAGS2=-c
@@ -19,4 +20,4 @@ libmainchek.o: $(LIB_DIR2)
 	$(C) $(FLAGS2) $(LIB_DIR2)
 
 clean:
-	rm -rf *.o geometry
+	rm -rf *.o
