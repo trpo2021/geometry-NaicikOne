@@ -1,23 +1,44 @@
-NAME_PROJ = geometry_easy
-C=gcc
-FLAGS1=-lm -o
-FLAGS2=-c
-OBJ=geometry.o lib_calc_trans.o libmainchek.o
-OBJ_DIR=src/hello/geometry.c
-LIB_DIR1=src/libhello/lib_calc_trans.c
-LIB_DIR2=src/libhello/libmainchek.c
+APP_NAME = hello
+LIB_NAME = libhello
 
-geometry.c: $(OBJ)
-	$(C) $(OBJ) $(FLAGS1)  geometry.exe
+CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -I src -MP -MMD
+LDFLAGS =
+LDLIBS =
 
-geometry.o: $(OBJ_DIR)
-	$(C) $(FLAGS2) $(OBJ_DIR)
+BIN_DIR = bin
+OBJ_DIR = obj
+SRC_DIR = src
 
-lib_calc_trans.o: $(LIB_DIR1)
-	$(C) $(FLAGS2) $(LIB_DIR1)
+APP_PATH = $(BIN_DIR)/$(APP_NAME)
+LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 
-libmainchek.o: $(LIB_DIR2)
-	$(C) $(FLAGS2) $(LIB_DIR2)
+SRC_EXT = c
 
+APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
+APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
+
+LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
+LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
+
+DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
+
+.PHONY: all
+all: $(APP_PATH)
+
+-include $(DEPS)
+
+$(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+
+$(LIB_PATH): $(LIB_OBJECTS)
+	ar rcs $@ $^
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+.PHONY: clean
 clean:
-	rm -rf *.o
+	$(RM) $(APP_PATH) $(LIB_PATH)
+	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
+	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
