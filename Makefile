@@ -1,5 +1,5 @@
-APP_NAME = hello
-LIB_NAME = libhello
+APP_NAME = main
+LIB_NAME = lib
 
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I src -MP -MMD

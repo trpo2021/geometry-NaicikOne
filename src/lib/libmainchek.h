@@ -11,4 +11,4 @@ bool search_comma(char*);
 bool search_brecket2(char*);
 bool word_chek(char*, char*);
 int chek(char*, char*);
-int mainchek(char*, char*, char*);
+int mainchek(char*, char*);
