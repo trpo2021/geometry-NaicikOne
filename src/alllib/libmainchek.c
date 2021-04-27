@@ -1,22 +1,11 @@
 #include "libmainchek.h"
 
-bool search_brecket(char*);
-bool search_comma(char*);
-bool search_brecket2(char*);
-bool word_chek(char*, char*);
-int chek(char*, char*);
-int mainchek(char*, char*, char*);
-
-int mainchek(char* MARK, char* WR, char* MARK2)
+int mainchek(char* MARK, char* WR)
 {
+    printf("mainchek work");
+    system("pause");
     int ans = 1;
-    if (isalpha(*MARK) != 0) {
-        while (isalpha(*MARK2) != 0)
-            MARK2++;
-    } //передвижение указателя на первую скобку
-
     if (chek(MARK, WR) == 0) {
-        MARK = MARK2;
         printf("Correct\n");
         return ans;
     } else {
@@ -28,12 +17,17 @@ int mainchek(char* MARK, char* WR, char* MARK2)
 
 int chek(char* MARK, char* WR)
 {
+    printf("chek work");
+    system("pause");
     int res = 0;
     if (search_brecket(MARK) == 0) {
         res++;
+        printf("1 breck work");
+        system("pause");
     } //поиск '('
     if (search_brecket2(MARK) == 0) {
         res++;
+        printf("1 breck work");
     } //поиск ')'
     if (search_comma(MARK) == 0) {
         res++;
@@ -48,7 +42,7 @@ bool search_brecket(char* MARK)
 {
     int flag = 0;
 
-    while (*MARK != 10) {
+    while (*MARK != '\0') {
         if (*MARK == '(') {
             flag = 1;
             break;
@@ -66,7 +60,7 @@ bool search_brecket2(char* MARK)
 {
     int flag = 0;
 
-    while (*MARK != 10) {
+    while (*MARK != '\0') {
         if (*MARK == ')') {
             flag = 1;
             break;
@@ -84,7 +78,7 @@ bool search_comma(char* MARK)
 {
     int flag = 0;
 
-    while (*MARK != 10) {
+    while (*MARK != '\0') {
         if (*MARK == ',') {
             flag = 1;
             break;

@@ -10,27 +10,28 @@
 
 int main()
 {
-    char ST1[30];
-    char ST2[30];
-    char* MARK;
-    char* MARK2;
-    int D[3];
-    char WR[] = {"circle"};
+    char st1[30];
+    char st2[30];
+    char* mark;
+    char* mark2;
+    int d[3];
+    char wr[] = {"circle"};
     printf("enter first circle:\n");
-    scanf("%s", &ST1);
-    MARK = ST1;
-    MARK2 = ST1;
-    printf("enter second circle:\n");
-    scanf("%s", &ST2);
+    fgets(st1, 30, stdin);
+    mark = st1;
+    mark2 = st1;
+    puts(st1);
+    system("pause");
 
     system("cls");
-    printf("For first circle:");
-    if (mainchek(MARK, WR, MARK2) == 0) {
+    printf("For first circle:\n");
+    if (mainchek(mark, wr) == 0) {
         system("pause");
         return 0;
     }
-    translate(MARK, D);
-    calculation(D);
+    printf("work\n");
+    translate(mark, d);
+    calculation(d);
 
     printf("Go to the calculation of the second circle? 1 - yes, 2 - no");
     int answer;
@@ -40,16 +41,7 @@ int main()
         system("pause");
         return 0;
     }
-
-    system("cls");
-    printf("For second circle:");
-    MARK = ST2;
-    MARK2 = ST2;
-    if (mainchek(MARK, WR, MARK2) == 0) {
-        system("pause");
-        return 0;
-    }
-    translate(MARK, D);
-    calculation(D);
+    printf("work");
+    system("pause");
     return 0;
 }

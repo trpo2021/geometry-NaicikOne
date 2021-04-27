@@ -1,8 +1,5 @@
 #include "lib_calc_trans.h"
 
-void calculation(int*);
-int translate(char*, int*);
-
 int translate(char* MARK, int* D)
 {
     while (isalpha(*MARK) != 0) {
