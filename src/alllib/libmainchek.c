@@ -1,53 +1,45 @@
 #include "libmainchek.h"
 
-int mainchek(char* MARK, char* WR)
+int mainchek(char* mark, char* wr)
 {
-    printf("mainchek work");
-    system("pause");
-    int ans = 1;
-    if (chek(MARK, WR) == 0) {
+    if (chek(mark, wr) == 0) {
         printf("Correct\n");
-        return ans;
+        return 0;
     } else {
         printf("Uncorrect\n");
-        ans = 0;
-        return ans;
+        system("pause");
+        return 1;
     } // вывод сообщения о корректности запроса
 }
 
-int chek(char* MARK, char* WR)
+int chek(char* mark, char* wr)
 {
-    printf("chek work");
-    system("pause");
     int res = 0;
-    if (search_brecket(MARK) == 0) {
+    if (search_brecket(mark) == 0) { //поиск '('
         res++;
-        printf("1 breck work");
-        system("pause");
-    } //поиск '('
-    if (search_brecket2(MARK) == 0) {
+    }
+    if (search_brecket2(mark) == 0) { //поиск ')'
         res++;
-        printf("1 breck work");
-    } //поиск ')'
-    if (search_comma(MARK) == 0) {
+    }
+    if (search_comma(mark) == 0) { //поиск ','
         res++;
-    } //поиск ','
-    if (word_chek(MARK, WR) == 0) {
+    }
+    if (word_chek(mark, wr) == 0) {
         res++;
     }
     return res;
 } //массовая проверка верности запроса
 
-bool search_brecket(char* MARK)
+bool search_brecket(char* mark)
 {
     int flag = 0;
 
-    while (*MARK != '\0') {
-        if (*MARK == '(') {
+    while (*mark != 10) {
+        if (*mark == '(') {
             flag = 1;
             break;
         }
-        MARK++;
+        mark++;
     }
     if (flag == 0) {
         printf("expected '('\n");
@@ -56,16 +48,16 @@ bool search_brecket(char* MARK)
     return true;
 } //проверка на наличие "("
 
-bool search_brecket2(char* MARK)
+bool search_brecket2(char* mark)
 {
     int flag = 0;
 
-    while (*MARK != '\0') {
-        if (*MARK == ')') {
+    while (*mark != 10) {
+        if (*mark == ')') {
             flag = 1;
             break;
         }
-        MARK++;
+        mark++;
     }
     if (flag == 0) {
         printf("expected ')'\n");
@@ -74,16 +66,16 @@ bool search_brecket2(char* MARK)
     return true;
 } //проверка на наличие ")"
 
-bool search_comma(char* MARK)
+bool search_comma(char* mark)
 {
     int flag = 0;
 
-    while (*MARK != '\0') {
-        if (*MARK == ',') {
+    while (*mark != 10) {
+        if (*mark == ',') {
             flag = 1;
             break;
         }
-        MARK++;
+        mark++;
     }
     if (flag == 0) {
         printf("expected ','\n");
@@ -92,10 +84,10 @@ bool search_comma(char* MARK)
     return true;
 } //проверка на наличие ","
 
-bool word_chek(char* WR, char* MARK)
+bool word_chek(char* wr, char* mark)
 {
     int s = 6;
-    if (strncmp(WR, MARK, s) == 0) {
+    if (strncmp(wr, mark, s) == 0) {
         return true;
     }
     printf("check the spelling of the word\n");

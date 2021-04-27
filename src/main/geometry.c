@@ -10,38 +10,27 @@
 
 int main()
 {
-    char st1[30];
-    char st2[30];
-    char* mark;
-    char* mark2;
+    int max = 30;
+    char str[max];
+    char* mark = str;
+    char* mark2 = str;
     int d[3];
     char wr[] = {"circle"};
-    printf("enter first circle:\n");
-    fgets(st1, 30, stdin);
-    mark = st1;
-    mark2 = st1;
-    puts(st1);
-    system("pause");
 
-    system("cls");
-    printf("For first circle:\n");
-    if (mainchek(mark, wr) == 0) {
-        system("pause");
+    fgets(str, max, stdin);
+
+    if (isalpha(*mark) != 0) {
+        while (isalpha(*mark2) != 0)
+            mark2++;
+    } //передвижение указателя на первую скобку
+
+    if (mainchek(mark, wr) == 1)
         return 0;
-    }
-    printf("work\n");
+    else
+        mark = mark2;
+
     translate(mark, d);
     calculation(d);
 
-    printf("Go to the calculation of the second circle? 1 - yes, 2 - no");
-    int answer;
-    scanf("%d", answer);
-    if (answer == 2) {
-        printf("thank you for using the program");
-        system("pause");
-        return 0;
-    }
-    printf("work");
-    system("pause");
     return 0;
 }
