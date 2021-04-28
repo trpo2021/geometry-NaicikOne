@@ -1,22 +1,26 @@
 #include "lib_calc_trans.h"
 
-int translate(char* mark, int* d)
+void translate(char* mark, double* d)
 {
-    while (isalpha(*mark) != 0) {
-        mark++;
+    int i = 0, a = 0;
+    char ch[12];
+    while ((int)*mark != 41) {
+        while ((int)*mark < 48 || (int)*mark > 57) {
+            mark++;
+        }
+        while ((int)*mark != 32 && (int)*mark != 44 && (int)*mark != 41) {
+            ch[i] = *mark;
+            i++;
+            mark++;
+        }
+
+        d[a] = atoi(ch);
+        i = 0;
+        a++;
     }
-    mark++;
-    char num[1];
-    int i = 0;
-    while (i != 3) {
-        *num = *(mark + i);
-        d[i] = atoi(num);
-        i++;
-    }
-    return 0;
 } //преобразование чисел в строке в численный формат данных
 
-void calculation(int* d)
+void calculation(double* d)
 {
     float pi = 3.1415;
     float s;
@@ -25,5 +29,13 @@ void calculation(int* d)
     s = pi * pow(d[2], 2);
     printf("Perimetr = %f\n", p);
     printf("Area = %f\n", s);
-    system("pause");
 } // нахождение периметра и площади
+
+int figure_chek(double* d1, double* d2)
+{
+    if (d1[0] == d2[1] && d1[1] == d2[1] && d1[2] == d2[2]) {
+        printf("the circles have the same coordinates, and the same radius");
+        return 0;
+    }
+    return 0;
+}
