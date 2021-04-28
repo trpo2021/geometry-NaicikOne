@@ -15,7 +15,7 @@ int main()
     char str2[max];
     char* mark1 = str1;
     char* mark2 = str1;
-    double d1[3], d2[3];
+    double d1[4], d2[4];
     char wr[] = {"circle"};
 
     printf("For first circle: ");
@@ -47,6 +47,8 @@ int main()
     translate(mark3, d2);
     calculation(d2);
 
+    figure_chek(d1, d2);
+    printf("\n");
     system("pause");
     return 0;
 }
