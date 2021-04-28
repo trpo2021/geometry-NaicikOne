@@ -1,7 +1,7 @@
 APP_NAME = main
 LIB_NAME = lib
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -lm -Wextra -Werror
 CPPFLAGS = -I src -MP -MMD
 LDFLAGS =
 LDLIBS =

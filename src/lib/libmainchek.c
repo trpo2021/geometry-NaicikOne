@@ -12,7 +12,7 @@ int mainchek(char* mark, char* wr)
     } // вывод сообщения о корректности запроса
 }
 
-int chek(char* mark, char* wr)
+int mass_chek(char* mark, char* wr)
 {
     int res = 0;
     if (search_brecket(mark) == 0) { //поиск '('
@@ -30,41 +30,39 @@ int chek(char* mark, char* wr)
     return res;
 } //массовая проверка верности запроса
 
-bool search_brecket(char* mark)
+bool search_breckets(char* mark)
 {
-    int flag = 0;
+    int flag1 = 0, flag2 = 0;
 
     while (*mark != 10) {
         if (*mark == '(') {
-            flag = 1;
+            flag1 = 1;
             break;
         }
         mark++;
     }
-    if (flag == 0) {
-        printf("expected '('\n");
-        return false;
-    }
-    return true;
-} //проверка на наличие "("
-
-bool search_brecket2(char* mark)
-{
-    int flag = 0;
-
     while (*mark != 10) {
         if (*mark == ')') {
-            flag = 1;
+            flag2 = 1;
             break;
         }
         mark++;
     }
-    if (flag == 0) {
-        printf("expected ')'\n");
+    if (flag1 == 0 && flag2 == 0) {
+        printf("error: expected breckets");
         return false;
     }
+    if (flag1 == 0 && flag2 == 1) {
+        printf("error:expected ')'");
+        return false;
+    }
+    if (flag1 == 1 && flag2 == 0) {
+        printf("error:expected ')'");
+        return false;
+    }
+
     return true;
-} //проверка на наличие ")"
+} //проверка на наличие скобок
 
 bool search_comma(char* mark)
 {
