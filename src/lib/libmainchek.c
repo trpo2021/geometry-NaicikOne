@@ -2,7 +2,7 @@
 
 int mainchek(char* mark, char* wr)
 {
-    if (chek(mark, wr) == 0) {
+    if (mass_chek(mark, wr) == 0) {
         printf("Correct\n");
         return 0;
     } else {
@@ -15,10 +15,7 @@ int mainchek(char* mark, char* wr)
 int mass_chek(char* mark, char* wr)
 {
     int res = 0;
-    if (search_brecket(mark) == 0) { //поиск '('
-        res++;
-    }
-    if (search_brecket2(mark) == 0) { //поиск ')'
+    if (search_breckets(mark) == 0) { //поиск скобок
         res++;
     }
     if (search_comma(mark) == 0) { //поиск ','
