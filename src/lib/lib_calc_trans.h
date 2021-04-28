@@ -6,5 +6,6 @@
 
 #pragma once
 
-void calculation(int*);
-int translate(char*, int*);
+void calculation(double*);
+void translate(char*, double*);
+int figure_chek(double*, double*);
