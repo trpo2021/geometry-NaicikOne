@@ -21,7 +21,7 @@ int mass_chek(char* mark, char* wr)
     if (search_comma(mark) == 0) { //поиск ','
         res++;
     }
-    if (word_chek(mark, wr) == 0) {
+    if (word_chek(wr, mark) == 0) {
         res++;
     }
     return res;
@@ -29,14 +29,15 @@ int mass_chek(char* mark, char* wr)
 
 bool search_breckets(char* mark)
 {
+    char* mark2 = mark;
     int flag1 = 0, flag2 = 0;
 
-    while (*mark != 10) {
-        if (*mark == '(') {
+    while (*mark2 != 10) {
+        if (*mark2 == '(') {
             flag1 = 1;
             break;
         }
-        mark++;
+        mark2++;
     }
     while (*mark != 10) {
         if (*mark == ')') {
@@ -46,18 +47,17 @@ bool search_breckets(char* mark)
         mark++;
     }
     if (flag1 == 0 && flag2 == 0) {
-        printf("error: expected breckets");
+        printf("error: expected breckets\n");
         return false;
     }
     if (flag1 == 0 && flag2 == 1) {
-        printf("error:expected ')'");
+        printf("error: expected ')'\n");
         return false;
     }
     if (flag1 == 1 && flag2 == 0) {
-        printf("error:expected ')'");
+        printf("error: expected ')'\n");
         return false;
     }
-
     return true;
 } //проверка на наличие скобок
 
