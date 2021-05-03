@@ -10,9 +10,12 @@ lib_calc_trans.o:
 libmainchek.o:
 	gcc -c src/lib/libmainchek.c
 
-test: libmainchek.o
-	gcc -c src/main/test.c
-	gcc test.o libmainchek.o -lm -o test.exe
+test_main.o:
+	gcc -c src/test/test_main.c
+
+test: libmainchek.o test_main.o
+	gcc -c src/test/test.c
+	gcc test.o libmainchek.o test_main.o -lm -o test.exe
 
 clean:
-	rm -rf *.o all
+	rm -rf all *.o
