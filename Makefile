@@ -9,3 +9,6 @@ lib_calc_trans.o:
 
 libmainchek.o:
 	gcc -c src/lib/libmainchek.c
+
+clean:
+	rm -rf *.o all
