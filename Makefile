@@ -3,7 +3,7 @@ MAIN_DIR = src/main/
 FLAG = -lm -o
 O_FLAG = -c
 
-calc: geometry.exe clean
+calc: geometry.exe
 
 geometry.exe: calc_ar
 	gcc -Wall -Werror  calc.a $(FLAG) geometry.exe
@@ -19,6 +19,3 @@ lib_calc_trans.o:
 
 libmainchek.o:
 	gcc $(O_FLAG) $(LIB_DIR)libmainchek.c
-
-clean:
-	rm *.o
