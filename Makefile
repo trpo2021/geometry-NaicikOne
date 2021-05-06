@@ -1,25 +1,39 @@
+LIB_DIR = src/lib/
+LIB_TEST = src/test/
+LIB_MAIN = src/main
+FLAG = -lm -o
+O_FLAG = -c
+
 all: geometry.exe test
 
 calc: geometry.exe
 
-geometry.exe: geometry.o lib_calc_trans.o libmainchek.o
-	gcc geometry.o lib_calc_trans.o libmainchek.o -lm -o geometry.exe
+geometry.exe: calc_ar
+	gcc calc.a $(FLAG) geometry.exe
+
+test: test_ar
+	gcc test.a $(FLAG) test.exe
+
+test_ar: test_main.o test.o libmainchek.o
+	ar rc test.a test_main.o test.o libmainchek.o
+
+calc_ar: lib_calc_trans.o libmainchek.o geometry.o
+	ar rc calc.a lib_calc_trans.o libmainchek.o geometry.o
 
 geometry.o:
-	gcc -c src/main/geometry.c
+	gcc $(O_FLAG) $(LIB_MAIN)geometry.c
 
 lib_calc_trans.o:
-	gcc -c src/lib/lib_calc_trans.c
+	gcc $(O_FLAG) $(LIB_DIR)lib_calc_trans.c
 
 libmainchek.o:
-	gcc -c src/lib/libmainchek.c
+	gcc $(O_FLAG) $(LIB_DIR)libmainchek.c
 
 test_main.o:
-	gcc -c src/test/test_main.c
+	gcc $(O_FLAG) $(LIB_TEST)test_main.c
 
-test: libmainchek.o test_main.o
-	gcc -c src/test/test.c
-	gcc test.o libmainchek.o test_main.o -lm -o test.exe
+test.o:
+	gcc $(O_FLAG) $(LIB_TEST)test.c
 
 clean:
-	rm -rf all *.o
+	rm -rf *.o geometry.exe
