@@ -1,4 +1,6 @@
-all: geometry.o lib_calc_trans.o libmainchek.o
+all: geometry.exe
+
+geometry.exe: 
 	gcc geometry.o lib_calc_trans.o libmainchek.o -lm -o geometry.exe
 
 geometry.o:
