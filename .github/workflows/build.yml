@@ -1,0 +1,6 @@
+  steps:
+- name: Check codestyle
+        run: git ls-files *.{c,h} | xargs clang-format -i && git diff --exit-code
+
+      - name: Build application
+        run: make
