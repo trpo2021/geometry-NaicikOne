@@ -1,5 +1,5 @@
 LIB_DIR = src/lib/
-LIB_MAIN = src/main/
+MAIN_DIR = src/main/
 FLAG = -lm -o
 O_FLAG = -c
 
@@ -12,7 +12,7 @@ calc_ar: lib_calc_trans.o libmainchek.o geometry.o
 	ar rcs calc.a lib_calc_trans.o libmainchek.o geometry.o
 
 geometry.o:
-	gcc $(O_FLAG) $(LIB_MAIN)geometry.c
+	gcc $(O_FLAG) $(MAIN_DIR)geometry.c
 
 lib_calc_trans.o:
 	gcc $(O_FLAG) $(LIB_DIR)lib_calc_trans.c
