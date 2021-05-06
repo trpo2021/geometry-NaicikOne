@@ -6,7 +6,7 @@ O_FLAG = -c
 calc: geometry.exe clean
 
 geometry.exe: calc_ar
-	gcc calc.a $(FLAG) geometry.exe
+	gcc -Wall -Werror calc.a $(FLAG) geometry.exe
 
 calc_ar: lib_calc_trans.o libmainchek.o geometry.o
 	ar rcs calc.a lib_calc_trans.o libmainchek.o geometry.o
