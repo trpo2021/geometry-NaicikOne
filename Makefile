@@ -1,16 +1,24 @@
-all: geometry.exe
+LIB_DIR = src/lib/
+LIB_MAIN = src/main/
+FLAG = -lm -o
+O_FLAG = -c
 
-geometry.exe: 
-	gcc geometry.o lib_calc_trans.o libmainchek.o -lm -o geometry.exe
+calc: geometry.exe clean
+
+geometry.exe: calc_ar
+	gcc calc.a $(FLAG) geometry.exe
+
+calc_ar: lib_calc_trans.o libmainchek.o geometry.o
+	ar rc calc.a lib_calc_trans.o libmainchek.o geometry.o
 
 geometry.o:
-	gcc -c src/main/geometry.c
+	gcc $(O_FLAG) $(LIB_MAIN)geometry.c
 
 lib_calc_trans.o:
-	gcc -c src/lib/lib_calc_trans.c
+	gcc $(O_FLAG) $(LIB_DIR)lib_calc_trans.c
 
 libmainchek.o:
-	gcc -c src/lib/libmainchek.c
+	gcc $(O_FLAG) $(LIB_DIR)libmainchek.c
 
 clean:
-	rm -rf *.o all
+	rm *.o
