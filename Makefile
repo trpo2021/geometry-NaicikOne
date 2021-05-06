@@ -9,7 +9,7 @@ geometry.exe: calc_ar
 	gcc calc.a $(FLAG) geometry.exe
 
 calc_ar: lib_calc_trans.o libmainchek.o geometry.o
-	ar rc calc.a lib_calc_trans.o libmainchek.o geometry.o
+	ar rcs calc.a lib_calc_trans.o libmainchek.o geometry.o
 
 geometry.o:
 	gcc $(O_FLAG) $(LIB_MAIN)geometry.c
