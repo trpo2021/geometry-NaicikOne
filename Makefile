@@ -1,8 +1,8 @@
 LIB_DIR = src/lib/
 LIB_TEST = src/test/
-LIB_MAIN = src/main
+LIB_MAIN = src/main/
 FLAG = -lm -o
-O_FLAG = -c
+O_FLAG = -I src -c
 
 all: geometry.exe test
 
@@ -12,7 +12,7 @@ geometry.exe: calc_ar
 	gcc calc.a $(FLAG) geometry.exe
 
 test: test_ar
-	gcc test.a $(FLAG) test.exe
+	gcc test_main.o test.o libmainchek.o $(FLAG) test.exe
 
 test_ar: test_main.o test.o libmainchek.o
 	ar rc test.a test_main.o test.o libmainchek.o
@@ -36,4 +36,6 @@ test.o:
 	gcc $(O_FLAG) $(LIB_TEST)test.c
 
 clean:
-	rm -rf *.o geometry.exe
+	rm *.o
+	rm *.a
+	rm *.exe
