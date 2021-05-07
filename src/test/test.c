@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "../lib/libmainchek.h"
+#include "lib/libmainchek.h"
 
 // start of the correct input tests
 CTEST(input, word_chek_true)
