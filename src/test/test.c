@@ -42,13 +42,13 @@ CTEST(input, search_comma_false)
     char* str = "cirle123";
     char* mark = str;
     bool result = search_comma(mark);
-    ASSERT_TRUE(result);
+    ASSERT_FALSE(result);
 }
 CTEST(input, search_breckets_false)
 {
     char* str = "cirle123";
     char* mark = str;
     bool result = search_breckets(mark);
-    ASSERT_TRUE(result);
+    ASSERT_FALSE(result);
 }
 // end of the incorrect input test
