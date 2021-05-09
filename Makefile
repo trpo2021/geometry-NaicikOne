@@ -8,7 +8,7 @@ BIN = bin/
 OBJ_LIB = obj/src/lib/
 OBJ_MAIN = obj/src/main/
 
-all: geometry.exe
+all: geometry.exe clean
 
 geometry.exe: calc_ar
 	$(CC) $(BIN)calc.a $(FLAG) $(BIN)geometry.exe
@@ -25,7 +25,8 @@ lib_calc_trans.o: $(LIB_DIR)lib_calc_trans.c
 libmainchek.o: $(LIB_DIR)libmainchek.c
 	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c -o obj/$(LIB_DIR)$@
 
+.PHONY: clean
+
 clean:
-	rm *.o
-	rm *.a
-	rm *.exe
+	$(RM) $(OBJ_LIB)*.o  $(OBJ_MAIN)*.o $(OBJ_TEST)*.o
+	$(RM) $(OBJ_LIB)*.d  $(OBJ_MAIN)*.d $(OBJ_TEST)*.d
