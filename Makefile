@@ -1,21 +1,31 @@
 LIB_DIR = src/lib/
-MAIN_DIR = src/main/
+LIB_MAIN = src/main/
+CC = gcc
+AR = ar rc
 FLAG = -lm -o
-O_FLAG = -c
+O_FLAG = -Wall -Wextra  -I src -c -MP -MMD
+BIN = bin/
+OBJ_LIB = obj/src/lib/
+OBJ_MAIN = obj/src/main/
 
-calc: geometry.exe
+all: geometry.exe
 
 geometry.exe: calc_ar
-	gcc -Wall -Werror  calc.a $(FLAG)geometry.exe
+	$(CC) $(BIN)calc.a $(FLAG) $(BIN)geometry.exe
 
 calc_ar: lib_calc_trans.o libmainchek.o geometry.o
-	ar rcs calc.a lib_calc_trans.o libmainchek.o geometry.o
+	$(AR) $(BIN)calc.a $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
 
-geometry.o:
-	gcc -I src $(O_FLAG) $(MAIN_DIR)geometry.c
+geometry.o: $(LIB_MAIN)geometry.c
+	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c -o obj/$(LIB_MAIN)$@
 
-lib_calc_trans.o:
-	gcc $(O_FLAG) $(LIB_DIR)lib_calc_trans.c
+lib_calc_trans.o: $(LIB_DIR)lib_calc_trans.c
+	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c -o obj/$(LIB_DIR)$@
 
-libmainchek.o:
-	gcc $(O_FLAG) $(LIB_DIR)libmainchek.c
+libmainchek.o: $(LIB_DIR)libmainchek.c
+	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c -o obj/$(LIB_DIR)$@
+
+clean:
+	rm *.o
+	rm *.a
+	rm *.exe
