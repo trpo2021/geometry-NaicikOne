@@ -10,15 +10,15 @@ OBJ_LIB = obj/src/lib/
 OBJ_MAIN = obj/src/main/
 OBJ_TEST = obj/src/test/
 
-all: geometry.exe test
+all: geometry.exe test.exe clean
 
-calc: geometry.exe
+calc: geometry.exe clean
 
 geometry.exe: calc_ar
-	$(CC) $(BIN)calc.a $(FLAG) $(BIN)geometry.exe
+	$(CC) $(BIN)calc.a $(FLAG) $(BIN)$@
 
-test: test_ar
-	$(CC) $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o $(FLAG) $(BIN)test.exe
+test.exe: test_ar
+	$(CC) $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o $(FLAG) $(BIN)$@
 
 test_ar: test_main.o test.o libmainchek.o
 	$(AR) $(BIN)test.a $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o
@@ -41,7 +41,8 @@ test_main.o: $(LIB_TEST)test_main.c
 test.o: $(LIB_TEST)test.c
 	$(CC) $(O_FLAG) $(LIB_TEST)test.c -o obj/$(LIB_TEST)$@
 
+.PHONY: clean
+
 clean:
-	rm *.o
-	rm *.a
-	rm *.exe
+	$(RM) $(OBJ_LIB)*.o  $(OBJ_MAIN)*.o $(OBJ_TEST)*.o
+	$(RM) $(OBJ_LIB)*.d  $(OBJ_MAIN)*.d $(OBJ_TEST)*.d
