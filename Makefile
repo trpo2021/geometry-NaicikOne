@@ -4,38 +4,42 @@ LIB_MAIN = src/main/
 CC = gcc
 AR = ar rc
 FLAG = -lm -o
-O_FLAG = -I src -c
+O_FLAG = -Wall -Wextra  -I src -c -MP -MMD
+BIN = bin/
+OBJ_LIB = obj/src/lib/
+OBJ_MAIN = obj/src/main/
+OBJ_TEST = obj/src/test/
 
 all: geometry.exe test
 
 calc: geometry.exe
 
 geometry.exe: calc_ar
-	$(CC) calc.a $(FLAG) geometry.exe
+	$(CC) $(BIN)calc.a $(FLAG) $(BIN)geometry.exe
 
 test: test_ar
-	$(CC) test_main.o test.o libmainchek.o $(FLAG) test.exe
+	$(CC) $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o $(FLAG) $(BIN)test.exe
 
 test_ar: test_main.o test.o libmainchek.o
-	$(AR) test.a test_main.o test.o libmainchek.o
+	$(AR) $(BIN)test.a $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o
 
 calc_ar: lib_calc_trans.o libmainchek.o geometry.o
-	$(AR) calc.a lib_calc_trans.o libmainchek.o geometry.o
+	$(AR) $(BIN)calc.a $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
 
-geometry.o:
-	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c
+geometry.o: $(LIB_MAIN)geometry.c
+	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c -o obj/$(LIB_MAIN)$@
 
-lib_calc_trans.o:
-	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c
+lib_calc_trans.o: $(LIB_DIR)lib_calc_trans.c
+	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c -o obj/$(LIB_DIR)$@
 
-libmainchek.o:
-	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c
+libmainchek.o: $(LIB_DIR)libmainchek.c
+	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c -o obj/$(LIB_DIR)$@
 
-test_main.o:
-	$(CC) $(O_FLAG) $(LIB_TEST)test_main.c
+test_main.o: $(LIB_TEST)test_main.c
+	$(CC) $(O_FLAG) $(LIB_TEST)test_main.c -o obj/$(LIB_TEST)$@
 
-test.o:
-	$(CC) $(O_FLAG) $(LIB_TEST)test.c
+test.o: $(LIB_TEST)test.c
+	$(CC) $(O_FLAG) $(LIB_TEST)test.c -o obj/$(LIB_TEST)$@
 
 clean:
 	rm *.o
