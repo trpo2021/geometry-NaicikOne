@@ -33,7 +33,7 @@ void calculation(double* d)
 
 int figure_chek(double* d1, double* d2)
 {
-    double dist, enter[2];
+    double dist;
     dist = sqrt(pow(d2[0] - d1[0], 2) + pow(d2[1] - d1[1], 2));
     if (d1[2] < d2[2]) {
         if (dist + d1[2] == d2[2]) {
