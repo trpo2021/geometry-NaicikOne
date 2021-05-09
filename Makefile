@@ -42,7 +42,6 @@ test.o: $(LIB_TEST)test.c
 	$(CC) $(O_FLAG) $(LIB_TEST)test.c -o obj/$(LIB_TEST)$@
 
 .PHONY: clean
-
 clean:
 	$(RM) $(OBJ_LIB)*.o  $(OBJ_MAIN)*.o $(OBJ_TEST)*.o
 	$(RM) $(OBJ_LIB)*.d  $(OBJ_MAIN)*.d $(OBJ_TEST)*.d
