@@ -27,19 +27,19 @@ calc_ar: lib_calc_trans.o libmainchek.o geometry.o
 	$(AR) $(BIN)calc.a $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
 
 geometry.o: $(LIB_MAIN)geometry.c
-	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c -o obj/$(LIB_MAIN)$@
+	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c -o $(OBJ_MAIN)$@
 
 lib_calc_trans.o: $(LIB_DIR)lib_calc_trans.c
-	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c -o obj/$(LIB_DIR)$@
+	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c -o $(OBJ_LIB)$@
 
 libmainchek.o: $(LIB_DIR)libmainchek.c
-	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c -o obj/$(LIB_DIR)$@
+	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c -o $(OBJ_LIB)$@
 
 test_main.o: $(LIB_TEST)test_main.c
-	$(CC) $(O_FLAG) $(LIB_TEST)test_main.c -o obj/$(LIB_TEST)$@
+	$(CC) $(O_FLAG) $(LIB_TEST)test_main.c -o $(OBJ_TEST)$@
 
 test.o: $(LIB_TEST)test.c
-	$(CC) $(O_FLAG) $(LIB_TEST)test.c -o obj/$(LIB_TEST)$@
+	$(CC) $(O_FLAG) $(LIB_TEST)test.c -o $(OBJ_TEST)$@
 
 .PHONY: clean
 clean:
