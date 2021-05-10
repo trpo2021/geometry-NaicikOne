@@ -4,7 +4,7 @@ LIB_MAIN = src/main/
 CC = gcc
 AR = ar rc
 FLAG = -lm -o
-O_FLAG = -Wall -Wextra  -I src -c -MP -MMD
+O_FLAG = -Wall -Wextra -I src -c -MP -MMD
 BIN = bin/
 OBJ_LIB = obj/src/lib/
 OBJ_MAIN = obj/src/main/
@@ -13,6 +13,8 @@ OBJ_TEST = obj/src/test/
 all: geometry.exe test.exe clean
 
 calc: geometry.exe clean
+
+test: test.exe clean
 
 geometry.exe: calc_ar
 	$(CC) $(BIN)calc.a $(FLAG) $(BIN)$@
