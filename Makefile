@@ -11,7 +11,7 @@ OBJ_MAIN = obj/$(LIB_MAIN)
 
 all: $(BIN)geometry.exe
 
-$(BIN)geometry.exe: clean $(BIN)calc.a
+$(BIN)geometry.exe: $(BIN)calc.a
 	$(CC) $(BIN)calc.a $(FLAG) $@
 
 $(BIN)calc.a: $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
