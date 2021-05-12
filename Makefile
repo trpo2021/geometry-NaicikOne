@@ -1,5 +1,6 @@
 LIB_DIR = src/lib/
 LIB_MAIN = src/main/
+RM = rm -Force
 CC = gcc
 AR = ar rc
 FLAG = -lm -o
