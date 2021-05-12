@@ -17,13 +17,13 @@ calc: $(BIN)geometry.exe
 
 test: $(BIN)test.exe
 
-$(BIN)geometry.exe: clean $(BIN)calc.a
+$(BIN)geometry.exe: $(BIN)calc.a
 	$(CC) $(BIN)calc.a $(FLAG) $@
 
-$(BIN)test.exe: test.a
+$(BIN)test.exe: $(BIN)test.a
 	$(CC) $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o $(FLAG) $@
 
-$(BIN)test.a: test_main.o test.o libmainchek.o
+$(BIN)test.a: $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o
 	$(AR) $@ $(OBJ_TEST)test_main.o $(OBJ_TEST)test.o $(OBJ_LIB)libmainchek.o
 
 $(BIN)calc.a: $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
