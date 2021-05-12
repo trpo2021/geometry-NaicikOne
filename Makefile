@@ -8,22 +8,22 @@ BIN = bin/
 OBJ_LIB = obj/$(LIB_DIR)
 OBJ_MAIN = obj/$(LIB_MAIN)
 
-all: geometry.exe
+all: $(BIN)geometry.exe
 
-geometry.exe: calc.a
-	$(CC) $(BIN)calc.a $(FLAG) $(BIN)$@
+$(BIN)geometry.exe: $(BIN)calc.a
+	$(CC) $(BIN)calc.a $(FLAG) $@
 
-calc.a: lib_calc_trans.o libmainchek.o geometry.o
-	$(AR) $(BIN)$@ $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
+$(BIN)calc.a: $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
+	$(AR) $@ $(OBJ_LIB)lib_calc_trans.o $(OBJ_LIB)libmainchek.o $(OBJ_MAIN)geometry.o
 
-geometry.o: $(LIB_MAIN)geometry.c
-	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c $(FLAG) $(OBJ_MAIN)$@
+$(OBJ_MAIN)geometry.o: $(LIB_MAIN)geometry.c
+	$(CC) $(O_FLAG) $(LIB_MAIN)geometry.c $(FLAG) $@
 
-lib_calc_trans.o: $(LIB_DIR)lib_calc_trans.c
-	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c $(FLAG) $(OBJ_LIB)$@
+$(OBJ_LIB)lib_calc_trans.o: $(LIB_DIR)lib_calc_trans.c
+	$(CC) $(O_FLAG) $(LIB_DIR)lib_calc_trans.c $(FLAG) $@
 
-libmainchek.o: $(LIB_DIR)libmainchek.c
-	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c $(FLAG) $(OBJ_LIB)$@
+$(OBJ_LIB)libmainchek.o: $(LIB_DIR)libmainchek.c
+	$(CC) $(O_FLAG) $(LIB_DIR)libmainchek.c $(FLAG) $@
 
 .PHONY: clean
 
