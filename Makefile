@@ -28,6 +28,6 @@ $(OBJ_LIB)libmainchek.o: $(LIB_DIR)libmainchek.c
 .PHONY: clean
 
 clean:
-	$(RM) $(OBJ_LIB)*.o  $(OBJ_MAIN)*.o $(OBJ_TEST)*.o
-	$(RM) $(OBJ_LIB)*.d  $(OBJ_MAIN)*.d $(OBJ_TEST)*.d
+	$(RM) $(OBJ_LIB)*.o  $(OBJ_MAIN)*.o
+	$(RM) $(OBJ_LIB)*.d  $(OBJ_MAIN)*.d
 	$(RM) $(BIN)*.exe $(BIN)*.a
