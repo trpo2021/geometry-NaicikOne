@@ -2,7 +2,6 @@ LIB_DIR = src/lib/
 LIB_MAIN = src/main/
 CC = gcc
 AR = ar rc
-RM = rm -Force
 FLAG = -lm -o
 O_FLAG = -Wall -Wextra  -I src -c -MP -MMD
 BIN = bin/
