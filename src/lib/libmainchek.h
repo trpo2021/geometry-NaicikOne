@@ -6,8 +6,8 @@
 
 #pragma once
 
-bool search_breckets(char*);
 bool search_comma(char*);
+bool search_breckets(char*);
 bool word_chek(char*, char*);
 int mass_chek(char*, char*);
 int mainchek(char*, char*);
