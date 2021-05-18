@@ -35,20 +35,20 @@ CTEST(input, word_chek_false)
     char* mark = str;
     char* wr = "circle";
     bool result = word_chek(wr, mark);
-    ASSERT_TRUE(result);
+    ASSERT_FALSE(result);
 }
 CTEST(input, search_comma_false)
 {
     char* str = "cirle123";
     char* mark = str;
     bool result = search_comma(mark);
-    ASSERT_FALSE(result);
+    ASSERT_TRUE(result);
 }
 CTEST(input, search_breckets_false)
 {
     char* str = "cirle123";
     char* mark = str;
     bool result = search_breckets(mark);
-    ASSERT_FALSE(result);
+    ASSERT_TRUE(result);
 }
 // end of the incorrect input test
