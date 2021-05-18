@@ -16,4 +16,4 @@ jobs:
         run: make
 
       - name: tests
-        run: make test && ./bin/tests
+        run: make test && ./bin/tests.exe
